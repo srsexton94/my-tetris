@@ -1,5 +1,13 @@
-.square {
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  height: 440px;
+  width: 220px;
+}
+
+.grid div {
   border: 1px solid black;
-  height: 5px;
-  width: 5px;
+  background-color: blue;
+  height: 20px;
+  width: 20px;
 }

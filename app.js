@@ -1,13 +1,17 @@
 'use strict'
 
-const createGrid = () => {
+const createGrid = grid => {
   let gridHtml = ''
   for (let i = 0; i < 200; i++) {
-    gridHtml += '<div class="square"></div>'
+    gridHtml += '<div></div>'
   }
-  document.getElementById('grid').innerHTML = gridHtml
+  grid.innerHTML = gridHtml
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  createGrid()
+  const grid = document.querySelector('.grid')
+  createGrid(grid)
+  let squares = Array.from(document.querySelectorAll('.grid div'))
+  const score = document.querySelector('#score')
+  const width = 10
 })
