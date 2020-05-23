@@ -2,16 +2,25 @@
 
 const createGrid = grid => {
   let gridHtml = ''
-  for (let i = 0; i < 200; i++) {
-    gridHtml += '<div></div>'
+  for (let i = 0; i < 210; i++) {
+    if (i >= 200) {
+      gridHtml += '<div class="taken"></div>'
+    } else {
+      gridHtml += '<div></div>'
+    }
   }
   grid.innerHTML = gridHtml
+}
+
+const random = () => {
+  return ['l', 'z', 't', 'o', 'i'][Math.floor(Math.random()*5)]
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.grid')
   createGrid(grid)
-  let squares = Array.from(document.querySelectorAll('.grid div'))
+
+  let cells = Array.from(document.querySelectorAll('.grid div'))
   const score = document.querySelector('#score')
   const base = 10
 
@@ -48,15 +57,41 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   }
 
-  let place = 4
-  let letter = ['l', 'z', 't', 'o', 'i'][Math.floor(Math.random()*5)]
-  let current = shapes[letter][0]
+  // function newArr() {
+  //   const rotation = 0
+  //   return shapes[random()][0]
+  // }
 
-  function draw() {
+  let position = 4
+  let current = shapes[random()][0]
+
+  const draw = () => {
     current.forEach(i => {
-      squares[place + i].classList.add('shape')
+      cells[position + i].classList.add('shape')
     })
   }
 
-  draw()
+  const erase = () => {
+    current.forEach(i => {
+      cells[position + i].classList.remove('shape')
+    })
+  }
+
+  const stop = () => {
+    if (current.some(i => cells[position + i + base].classList.contains('taken'))) {
+      current.forEach(i => cells[position + i].classList.add('taken'))
+      current = shapes[random()][0]
+      position = 4
+      draw()
+    }
+  }
+
+  timerId = setInterval(falling, 250)
+
+  function falling() {
+    erase()
+    position += base
+    draw()
+    stop()
+  }
 })
