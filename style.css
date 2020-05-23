@@ -11,6 +11,10 @@
   width: 20px;
 }
 
+.grid .bottom {
+  display: none;
+}
+
 .grid .shape {
   background-color: blue;
 }

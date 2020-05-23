@@ -4,7 +4,7 @@ const createGrid = grid => {
   let gridHtml = ''
   for (let i = 0; i < 210; i++) {
     if (i >= 200) {
-      gridHtml += '<div class="taken"></div>'
+      gridHtml += '<div class="taken bottom"></div>'
     } else {
       gridHtml += '<div></div>'
     }
