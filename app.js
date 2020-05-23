@@ -13,5 +13,49 @@ document.addEventListener('DOMContentLoaded', () => {
   createGrid(grid)
   let squares = Array.from(document.querySelectorAll('.grid div'))
   const score = document.querySelector('#score')
-  const width = 10
+  const base = 10
+
+  const shapes = {
+    l: [
+      [1, base+1, base*2+1, 2],
+      [base, base+1, base+2, base*2+2],
+      [1, base+1, base*2+1, base*2],
+      [base, base*2, base*2+1, base*2+2]
+    ],
+    z: [
+      [0,base,base+1,base*2+1],
+      [base+1, base+2,base*2,base*2+1],
+      [0,base,base+1,base*2+1],
+      [base+1, base+2,base*2,base*2+1]
+    ],
+    t: [
+      [1,base,base+1,base+2],
+      [1,base+1,base+2,base*2+1],
+      [base,base+1,base+2,base*2+1],
+      [1,base,base+1,base*2+1]
+    ],
+    o: [
+      [0,1,base,base+1],
+      [0,1,base,base+1],
+      [0,1,base,base+1],
+      [0,1,base,base+1]
+    ],
+    i: [
+      [1,base+1,base*2+1,base*3+1],
+      [base,base+1,base+2,base+3],
+      [1,base+1,base*2+1,base*3+1],
+      [base,base+1,base+2,base+3]
+    ]
+  }
+
+  let currentPlace = 4
+  let current = shapes.l[0]
+
+  function draw() {
+    current.forEach(i => {
+      squares[currentPlace + i].classList.add('shape')
+    })
+  }
+
+  draw()
 })
