@@ -48,12 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   }
 
-  let currentPlace = 4
-  let current = shapes.l[0]
+  let place = 4
+  let letter = ['l', 'z', 't', 'o', 'i'][Math.floor(Math.random()*5)]
+  let current = shapes[letter][0]
 
   function draw() {
     current.forEach(i => {
-      squares[currentPlace + i].classList.add('shape')
+      squares[place + i].classList.add('shape')
     })
   }
 
